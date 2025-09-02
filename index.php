@@ -38,32 +38,71 @@ $marcas = listarMarcas($pdo);
       background: var(--brand-cream);
       color: var(--brand-black);
     }
-/* HEADER (logo no topo) */
-.site-header{
-  background: linear-gradient(180deg, var(--brand-red) 0%, var(--brand-red-d) 100%);
-  padding: clamp(12px,2vw,20px) 0;
-  box-shadow: 0 6px 16px rgba(0,0,0,.12);
-}
-.site-brand{
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 clamp(16px,4vw,32px);
-  display: flex; align-items: center; gap: clamp(12px,2vw,20px);
-}
-.site-brand img{
-  height: clamp(64px, 10vw, 120px);
-  width: auto;
-  border-radius: 16px;
-  filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
-}
-.brand-title{ color:#fff; margin:0; font-weight:800; letter-spacing:.5px; }
-.brand-sub  { color: rgba(255,255,255,.9); margin:0; font-size:.95rem; }
 
-/* Se quiser o header fixo no topo, descomente: */
-/* .site-header{ position: sticky; top: 0; z-index: 1030; } */
+    /* HEADER (logo no topo) */
+    .site-header {
+      background: linear-gradient(180deg, var(--brand-red) 0%, var(--brand-red-d) 100%);
+      padding: clamp(8px, 1.5vw, 16px) clamp(16px, 4vw, 32px);
+      /* Adicionando padding horizontal */
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+    }
 
-/* A seção principal agora é só um container (sem 30/70) */
-.split-hero{ display:block; min-height: auto; }
+    .site-brand {
+      /* max-width: 1200px;   <- remova */
+      /* margin: 0 auto;      <- remova */
+      width: 100%;
+      /* ocupa toda a largura do header */
+      margin: 0;
+      /* encosta à esquerda */
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: flex-start;
+      /* garante alinhamento à esquerda */
+    }
+
+    /* bloco de textos do logo: força alinhamento à esquerda */
+    .brand-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .site-brand img {
+      height: clamp(56px, 8vw, 96px);
+      /* Ajusta a altura da imagem de forma responsiva */
+      width: auto;
+      /* Remova a borda e o border-radius para se adaptar à nova imagem PNG */
+      border-radius: 4px;
+      filter: none;
+      /* Remova a sombra, se a nova imagem já tiver uma ou não precisar */
+    }
+
+    .brand-title {
+      color: #fff;
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .brand-sub {
+      color: rgba(255, 255, 255, .7);
+      /* Opacidade reduzida */
+      margin: 0;
+      font-size: 20px;
+      /* Fonte um pouco menor */
+      line-height: 1.2;
+    }
+
+    /* Se quiser o header fixo no topo, descomente: */
+    /* .site-header{ position: sticky; top: 0; z-index: 1030; } */
+
+    /* A seção principal agora é só um container (sem 30/70) */
+    .split-hero {
+      display: block;
+      min-height: auto;
+    }
 
 
     .container-conteudo {
@@ -220,13 +259,28 @@ $marcas = listarMarcas($pdo);
     }
 
     /* Botões e foco */
-    .btn-primary {
-      --bs-btn-bg: var(--brand-red);
-      --bs-btn-border-color: var(--brand-red);
-      --bs-btn-hover-bg: var(--brand-red-d);
-      --bs-btn-hover-border-color: var(--brand-red-d);
-      --bs-btn-focus-shadow-rgb: 229, 57, 53;
-    }
+    .btn-primary{
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--brand-red);
+  --bs-btn-border-color: var(--brand-red);
+
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--brand-red-d);
+  --bs-btn-hover-border-color: var(--brand-red-d);
+
+  /* <- estes dois resolvem o azul ao “segurar” */
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--brand-red-d);
+  --bs-btn-active-border-color: var(--brand-red-d);
+
+  /* opcional: manter consistência em disabled */
+  --bs-btn-disabled-bg: var(--brand-red);
+  --bs-btn-disabled-border-color: var(--brand-red);
+
+  /* cor do anel de foco */
+  --bs-btn-focus-shadow-rgb: 229,57,53;
+}
+
 
     .form-select:focus,
     .form-control:focus {
@@ -235,21 +289,37 @@ $marcas = listarMarcas($pdo);
     }
 
     /* --- TABELA CUSTOM (atributo no meio + valores abaixo) --- */
-    .table-compare.custom {
-      border-collapse: separate;
-      border-spacing: 0;
-      overflow: hidden;
-      border-radius: 12px;
-      width: 60%;
-    }
+/* wrapper é quem arredonda e recorta */
+.table-compare-wrap{
+  border-radius: 12px;
+  overflow: hidden;                 /* recorta o thead sticky nas bordas */
+}
 
-    .table-compare.custom thead th {
-      text-align: center;
-      background: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 2;
-    }
+/* tabela normal */
+.table-compare{
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  background: transparent;          /* usa o fundo do wrapper */
+}
+
+/* cabeçalho sticky continua igual */
+.table-compare thead th{
+  position: sticky;
+  position: -webkit-sticky;
+  top: var(--thead-offset, 0px);    /* se usar header fixo, ajuste essa var */
+  z-index: 2;
+  background: var(--brand-red-d);
+  color: #fff;
+  padding: 1.25rem 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,.1);
+  background-clip: padding-box;     /* evita “vazar” na borda */
+}
+
+/* opcional: arredondar visual do topo do thead também */
+.table-compare thead th:first-child{ border-top-left-radius: 14px; }
+.table-compare thead th:last-child { border-top-right-radius: 14px; }
+
 
     .table-compare.custom td,
     .table-compare.custom th {
@@ -259,7 +329,7 @@ $marcas = listarMarcas($pdo);
     /* linha do rótulo (meio) */
     .table-compare .label-row td {
       border: 0;
-      padding: 10px 8px 2px;
+      padding: 10px;
     }
 
     .table-compare .attr-name {
@@ -267,16 +337,19 @@ $marcas = listarMarcas($pdo);
     }
 
     .table-compare .attr-chip {
-    display: inline-block;
-    background: var(--brand-red);
-    color: #fff;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 1;
-    padding: 0.45rem .8rem;
-    box-shadow: 0 4px 12px rgba(229, 57, 53, .18);
-    width: 25%;
-    border-radius: 999px;
+      display: inline-block;
+      background: var(--brand-red);
+      color: #fff;
+      font-weight: 700;
+      /* Use um peso de fonte mais alto para destaque */
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      /* Aumenta um pouco o padding para mais espaço */
+      border-radius: 999px;
+      text-transform: uppercase;
+      /* Deixa o texto em caixa alta */
+      letter-spacing: 0.5px;
+      /* Adiciona um pequeno espaçamento entre as letras */
     }
 
     /* linha dos valores (abaixo) */
@@ -306,41 +379,130 @@ $marcas = listarMarcas($pdo);
     }
 
     /* Centraliza a tabela e controla largura responsiva */
-.table-compare.custom{
-  margin: 0 auto;                          /* centraliza */
-  width: min(960px, 95%);                  /* máximo 960px, senão 95% */
-  border-collapse: separate;               /* permite bordas por célula */
-  border-spacing: 0;
+    .table-compare.custom {
+      /* Centraliza horizontalmente e define a largura */
+      margin: 0 auto;
+      width: clamp(320px, 90vw, 960px);
+      /* Estilização */
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 12px;
+      /* Cantos arredondados */
+      overflow: hidden;
+      /* Garante que os cantos arredondados funcionem */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+      /* Sombra suave */
+    }
+
+    /* Centralização horizontal + largura responsiva */
+    .table-compare.custom {
+      margin: 0 auto;
+      /* centraliza o <table> */
+      width: clamp(320px, 90vw, 960px);
+      /* fluido até 960px */
+      table-layout: fixed;
+      /* colunas com mesma largura */
+    }
+
+    .container-conteudo { overflow: visible; }     /* estava auto */
+.table-compare-wrap { overflow: visible; }     /* se tiver max-height, remova */
+.table-compare.custom { overflow: visible; }
+
+
+    /* Centraliza texto de cabeçalhos e células */
+    .table-compare.custom th,
+    .table-compare.custom td {
+      text-align: center;
+    }
+
+    /* chip centralizado de verdade (sem largura fixa) */
+    .table-compare .attr-name {
+      text-align: center;
+    }
+
+    .table-compare .attr-chip {
+      width: auto;
+      /* <- remova o width:25% anterior */
+      margin-inline: auto;
+      /* centraliza o chip */
+      display: inline-block;
+    }
+
+    /* opcional: deixa os valores bem centralizados e com separação suave */
+    .table-compare .values-row td {
+      padding: 1rem 1.25rem;
+      /* Aumenta o padding para mais respiro */
+      font-size: 1rem;
+      line-height: 1.4;
+      vertical-align: top;
+      /* Alinha o texto no topo se o conteúdo for grande */
+    }
+
+    /* Bordas suaves entre as células */
+    .table-compare td {
+      border-bottom: 1px solid rgba(0, 0, 0, .05);
+    }
+
+    /* Bordas entre as colunas */
+    .table-compare .values-row td+td {
+      border-left: 1px dashed rgba(0, 0, 0, .1);
+      /* Borda tracejada entre as colunas */
+    }
+
+    /* Remove a borda inferior da última linha (opcional) */
+#tComparar tbody tr:last-of-type > td {
+  border-bottom: 0;
 }
 
-/* Centralização horizontal + largura responsiva */
-.table-compare.custom{
-  margin: 0 auto;                          /* centraliza o <table> */
-  width: clamp(320px, 90vw, 960px);        /* fluido até 960px */
-  table-layout: fixed;                     /* colunas com mesma largura */
+/* Primeiro td da última tr: canto inferior esquerdo */
+#tComparar tbody tr:last-of-type > td:first-of-type {
+  border-radius: 0 0 0 12px; /* top-left 0, top-right 0, bottom-right 0, bottom-left 12px */
 }
 
-/* Centraliza texto de cabeçalhos e células */
-.table-compare.custom th,
-.table-compare.custom td{
-  text-align: center;
+/* Segundo td da última tr: canto inferior direito */
+#tComparar tbody tr:last-of-type > td:last-of-type {
+  border-radius: 0 0 12px 0; /* top-left 0, top-right 0, bottom-right 12px, bottom-left 0 */
 }
 
-/* chip centralizado de verdade (sem largura fixa) */
-.table-compare .attr-name{ text-align: center; }
-.table-compare .attr-chip{
-  width: auto;               /* <- remova o width:25% anterior */
-  margin-inline: auto;       /* centraliza o chip */
-  display: inline-block;
-}
 
-/* opcional: deixa os valores bem centralizados e com separação suave */
-.table-compare .values-row td{
-  text-align: center;
-}
-.table-compare .values-row td + td{
-  border-left: 1px dashed rgba(0,0,0,.12);
-}
+    /* ícones sociais no canto direito do header */
+    .social-stack {
+      margin-left: auto;
+      /* empurra para a direita */
+      display: flex;
+      flex-direction: row;
+      /* vertical */
+      gap: 20px;
+      align-items: flex-end;
+      /* alinha à direita */
+    }
+
+    .social-link {
+      color: var(--brand-cream);
+      /* cor dos ícones */
+      opacity: .9;
+      transition: opacity .2s, transform .2s;
+      line-height: 0;
+      /* tira respiro extra */
+    }
+
+    .social-link:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .social-link svg {
+      width: 48px;
+      height: 48px;
+      display: block;
+    }
+
+    @media (max-width: 420px) {
+      .social-stack {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
 
 
 
@@ -352,21 +514,264 @@ $marcas = listarMarcas($pdo);
         padding: .4rem .7rem;
       }
     }
+
+
+    /* === LOADER usando assets/icons/moto.svg === */
+    .moto-loader {
+      display: none;
+      /* aparece com .show */
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      padding: 24px 0;
+    }
+
+    .moto-loader.show {
+      display: flex;
+    }
+
+    .moto-loader .loader-text {
+      color: var(--brand-black);
+      opacity: .75;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+
+    .moto-silhouette {
+      width: 100%;
+      height: auto;
+      display: block;
+      animation: moto-bob 1.2s ease-in-out infinite;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .15));
+    }
+
+    /* --- calibração fina do loader (usa variáveis) --- */
+    .moto-anim {
+      position: relative;
+      width: clamp(170px, 26vw, 240px);
+
+      /* POSIÇÕES DOS CENTROS DAS RODAS (em %) + TAMANHO DO ANEL */
+      /* valores ajustados para o seu assets/icons/moto.svg do print */
+      --wlx: 30%;
+      /* X roda ESQ  (antes 28%) */
+      --wly: 66%;
+      /* Y roda ESQ  (antes 72%) */
+      --wrx: 83%;
+      /* X roda DIR  (antes 82%) */
+      --wry: 66%;
+      /* Y roda DIR  (antes 72%) */
+      --ring: clamp(52px, 7.5vw, 68px);
+      /* diâmetro do anel */
+    }
+
+    .wheel-ring {
+      position: absolute;
+      width: var(--ring);
+      height: var(--ring);
+      border: 4px solid var(--brand-red-d);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: moto-spin .8s linear infinite;
+      opacity: .95;
+    }
+
+    .wheel-left {
+      left: var(--wlx);
+      top: var(--wly);
+      transform: translate(-50%, -50%);
+    }
+
+    .wheel-right {
+      left: var(--wrx);
+      top: var(--wry);
+      transform: translate(-50%, -50%);
+    }
+
+    /* mantém as animações */
+
+
+
+    /* fumacinha */
+    .puff {
+      position: absolute;
+      left: 12%;
+      top: 60%;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--brand-red);
+      opacity: 0;
+      animation: moto-puff 1.8s ease-out infinite;
+    }
+
+    .puff.d1 {
+      animation-delay: .25s
+    }
+
+    .puff.d2 {
+      animation-delay: .5s
+    }
+
+    /* animações */
+    @keyframes moto-spin {
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    @keyframes moto-bob {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-2px);
+      }
+    }
+
+    @keyframes moto-puff {
+      0% {
+        transform: translateX(0) scale(.6);
+        opacity: 0;
+      }
+
+      30% {
+        opacity: .75;
+      }
+
+      100% {
+        transform: translateX(-28px) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Layout p/ footer grudar na parte inferior */
+    body {
+      min-height: 100dvh;
+      /* cobre viewport inteira */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .split-hero {
+      /* sua área principal */
+      flex: 1 0 auto;
+      /* empurra o footer para baixo */
+    }
+
+    /* Footer simples + mesma cor do header */
+    .site-footer {
+      margin-top: auto;
+      /* gruda no fim da página */
+      background: linear-gradient(180deg, var(--brand-red) 0%, var(--brand-red-d) 100%);
+      color: var(--brand-cream);
+    }
+
+    .site-footer .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px clamp(16px, 4vw, 32px);
+      text-align: center;
+      font-size: .95rem;
+      opacity: .95;
+    }
+
+    .site-footer a {
+      color: var(--brand-cream);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Tabela responsiva (stack) para telas pequenas --- */
+@media (max-width: 576px){
+  /* some o thead no mobile (vamos mostrar o nome do modelo via ::before) */
+.table-compare.custom thead th {
+        padding: 10px;
+    font-size: 15px;
+}
+
+    .table-compare .attr-chip {
+        font-size: 14px;
+        padding: .4rem .7rem;
+    }
+
+  .btn-comparar {
+    width: 100%;
+}
+
+    .site-brand img {
+      height: 52px;
+    }
+
+    .brand-title {
+      font-size: 20px;
+    }
+
+    .brand-sub {
+      font-size: 14px;
+    }
+
+    
+    .social-link svg {
+      width: 32px;
+      height: 32px;
+    }
+}
+
   </style>
 
 
 </head>
 
 <body>
-<header class="site-header">
-  <div class="site-brand">
-    <img src="assets/logo.png" alt="Duas Rodas — Comparador de Motos">
-    <div>
-      <h1 class="brand-title">Duas Rodas</h1>
-      <p class="brand-sub">Comparador de motos</p>
+  <header class="site-header">
+    <div class="site-brand">
+      <img src="assets/logo.png" alt="Duas Rodas — Comparador de Motos">
+      <div class="brand-wrap">
+        <h1 class="brand-title">Duas Rodas</h1>
+        <p class="brand-sub">Comparador de motos</p>
+      </div>
+
+      <!-- Ícones sociais (direita) -->
+      <div class="social-stack">
+        <a class="social-link"
+          href="https://www.linkedin.com/in/samuel--camargo"
+          target="_blank" rel="noopener"
+          aria-label="LinkedIn de Samuel Camargo">
+          <!-- LinkedIn -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="currentColor" role="img" aria-hidden="true">
+            <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z
+                   M11,14.47c0-1.4,1.2-2.47,3-2.47s3,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53S11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10
+                   c0-2-1-4-3.5-4.04h-0.08C26,24.96,25,27.02,25,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56
+                   C36.78,20,40,22.73,40,28.26V39z" />
+          </svg>
+        </a>
+
+        <a class="social-link"
+          href="https://github.com/SamukaCode"
+          target="_blank" rel="noopener"
+          aria-label="GitHub de Samuel Camargo">
+          <!-- GitHub -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="currentColor" role="img" aria-hidden="true">
+            <path d="M25 2C12.85 2 3 11.85 3 24c0 9.71 6.29 17.93 15.02 20.84c.77.14 1.05-.33 1.05-.74
+                   c0-.36-.01-1.31-.02-2.57c-6.11 1.33-7.4-2.94-7.4-2.94c-.7-1.78-1.71-2.25-1.71-2.25c-1.4-.96.11-.94.11-.94
+                   c1.55.11 2.36 1.6 2.36 1.6c1.38 2.36 3.63 1.68 4.51 1.28c.14-1 .54-1.68.98-2.07c-4.88-.56-10.01-2.44-10.01-10.86
+                   c0-2.4.86-4.36 2.28-5.9c-.23-.56-.99-2.83.22-5.9c0 0 1.86-.6 6.1 2.25c1.77-.49 3.67-.74 5.57-.75c1.89.01 3.8.26 5.57.75
+                   c4.24-2.85 6.1-2.25 6.1-2.25c1.21 3.07.45 5.34.22 5.9c1.42 1.54 2.28 3.5 2.28 5.9c0 8.44-5.14 10.29-10.03 10.85
+                   c.56.49 1.05 1.46 1.05 2.95c0 2.13-.02 3.85-.02 4.38c0 .41.28.89 1.06.74C40.72 41.93 47 33.71 47 24
+                   C47 11.85 37.15 2 25 2z" />
+          </svg>
+        </a>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
+
 
   <!-- SUBSTITUA O HEADER + CONTAINERS INICIAIS POR ESTE BLOCO -->
   <section class="split-hero">
@@ -375,8 +780,6 @@ $marcas = listarMarcas($pdo);
     <!-- METADE 2: CONTEÚDO -->
     <div class="container-conteudo">
       <div class="container-fluid p-0">
-        <h1 class="mb-4">Motos</h1>
-
         <div class="container-selecao">
           <div class="compare-wrap">
             <!-- COLUNA 1 -->
@@ -454,14 +857,19 @@ $marcas = listarMarcas($pdo);
 
 
 
-
-
         <div id="boxComparar" class="mt-4 d-none">
-          <h2 class="h5 mb-3">Dados selecionados</h2>
+          <div id="loaderComparar" class="moto-loader" aria-live="polite" aria-busy="true">
+            <div class="moto-anim" aria-hidden="true">
+              <!-- usa seu SVG da pasta -->
+              <img src="assets/icons/moto.svg" alt="" class="moto-silhouette">
+              <span class="puff"></span><span class="puff d1"></span><span class="puff d2"></span>
+            </div>
+            <div class="loader-text">Acelerando os dados…</div>
+          </div>
 
           <!-- DESKTOP: Tabela -->
-          <div class="table-compare-wrap table-responsive d-none d-lg-block">
-            <table id="tComparar" class="table table-compare align-middle">
+<div class="table-compare-wrap">
+  <table id="tComparar" class="table table-compare align-middle">
               <thead>
                 <tr>
                   <th id="thModel1">Modelo A</th>
@@ -471,18 +879,22 @@ $marcas = listarMarcas($pdo);
               <tbody><!-- preenchido via JS --></tbody>
             </table>
           </div>
-
-          <!-- MOBILE: Accordion -->
-          <div id="accComparar" class="accordion accordion-flush d-lg-none">
-            <!-- preenchido via JS -->
-          </div>
         </div>
+
 
       </div>
     </div>
 
 
   </section>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      © <?= date('Y') ?> Duas Rodas — Comparador de Motos. Todos os direitos reservados.<br>
+      Desenvolvido por <a href="https://www.linkedin.com/in/samuel--camargo" target="_blank" rel="noopener">Samuel Camargo</a>.
+    </div>
+  </footer>
+
 
 
   <!-- jQuery 3 -->
@@ -527,8 +939,7 @@ $marcas = listarMarcas($pdo);
       ['peso', 'Peso'],
       ['altura_do_assento', 'Altura do assento'],
       ['tanque', 'Tanque'],
-      ['consumo_medio', 'Consumo médio'],
-      ['preco', 'Preço'],
+      ['consumo_medio', 'Consumo médio']
     ];
 
     function formatar(chave, val) {
@@ -538,9 +949,22 @@ $marcas = listarMarcas($pdo);
       return String(val);
     }
 
+    function showLoader() {
+      $('#boxComparar').removeClass('d-none');
+      $('#loaderComparar').addClass('show');
+      $('#btnComparar').prop('disabled', true);
+      $('#tComparar thead, #tComparar tbody').empty();
+      $('#accComparar').empty();
+    }
+
+    function hideLoader() {
+      $('#loaderComparar').removeClass('show');
+      $('#btnComparar').prop('disabled', false);
+    }
+
+
     // Seções para o accordion (agrupam atributos)
-    const SECOES = [
-      {
+    const SECOES = [{
         titulo: 'Motor / Transmissão',
         itens: [
           ['cilindrada', 'Cilindrada'],
@@ -575,59 +999,52 @@ $marcas = listarMarcas($pdo);
       },
     ];
 
-    // Accordion mobile
-    function renderAccordionComparativo(a, b) {
-      const $acc = $('#accComparar').empty();
-      SECOES.forEach((sec, idx) => {
-        const corpo = sec.itens.map(([key, rotulo]) => {
-          const va = formatar(key, a?.[key]);
-          const vb = formatar(key, b?.[key]);
-          return `
-        <div class="row py-2 border-bottom">
-          <div class="col-12 small text-muted mb-1">${escapeHtml(rotulo)}</div>
-          <div class="col-6"><strong>${escapeHtml(va)}</strong></div>
-          <div class="col-6"><strong>${escapeHtml(vb)}</strong></div>
-        </div>`;
-        }).join('');
+    // unidades por atributo (ajuste como preferir)
+const UNIDADES = {
+  consumo_medio: ' km/l',
+  tanque:        ' L',
+  peso:          ' kg',
+  altura_do_assento: ' mm',
+};
 
-        $acc.append(`
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="h${idx}">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#c${idx}" aria-expanded="false" aria-controls="c${idx}">
-            ${escapeHtml(sec.titulo)}
-          </button>
-        </h2>
-        <div id="c${idx}" class="accordion-collapse collapse" aria-labelledby="h${idx}" data-bs-parent="#accComparar">
-          <div class="accordion-body">${corpo}</div>
-        </div>
-      </div>`);
-      });
-    }
+// só adiciona unidade se o valor for “puro número” (evita duplicar)
+function formatarComUnidade(chave, val){
+  const base = formatar(chave, val);
+  if (base === '-') return base;
+
+  const unidade = UNIDADES[chave];
+  if (!unidade) return base;
+
+  // se o valor original já tem letras/símbolos (ex.: "25 km/l"), não acrescenta
+  const temUnidadeNoOriginal = /[^0-9.,\-]/.test(String(val ?? '').trim());
+  return temUnidadeNoOriginal ? base : (base + unidade);
+}
 
 
-   function renderTabelaComparativo(a, b) {
-  const $table = $('#tComparar').addClass('custom');
-  const $thead = $table.find('thead').empty();
-  const $tbody = $table.find('tbody').empty();
 
-  // Cabeçalho: nomes dos modelos
-  const nomeA = (a?.marca && a?.modelo) ? `${a.marca} ${a.modelo}` : 'Modelo A';
-  const nomeB = (b?.marca && b?.modelo) ? `${b.marca} ${b.modelo}` : 'Modelo B';
-  $thead.append(`
+    function renderTabelaComparativo(a, b) {
+      const $table = $('#tComparar').addClass('custom');
+      const $thead = $table.find('thead').empty();
+      const $tbody = $table.find('tbody').empty();
+
+      // Cabeçalho: nomes dos modelos
+      const nomeA = (a?.marca && a?.modelo) ? `${a.marca} ${a.modelo}` : 'Modelo A';
+      const nomeB = (b?.marca && b?.modelo) ? `${b.marca} ${b.modelo}` : 'Modelo B';
+      $thead.append(`
     <tr>
       <th id="thModel1">${escapeHtml(nomeA)}</th>
       <th id="thModel2">${escapeHtml(nomeB)}</th>
     </tr>
   `);
 
-  // Para cada atributo: 1) linha-título (colspan=2), 2) linha com valores (duas colunas)
-  MAPA_ATRIBUTOS.forEach(([key, rotulo], idx) => {
-    const va = formatar(key, a?.[key]);
-    const vb = formatar(key, b?.[key]);
+      // Para cada atributo: 1) linha-título (colspan=2), 2) linha com valores (duas colunas)
+      MAPA_ATRIBUTOS.forEach(([key, rotulo], idx) => {
+        const va = formatarComUnidade(key, a?.[key]);
+const vb = formatarComUnidade(key, b?.[key]);
 
-    // linha do título do atributo (ocupa as duas colunas)
-    $tbody.append(`
+
+        // linha do título do atributo (ocupa as duas colunas)
+        $tbody.append(`
       <tr class="label-row ${idx % 2 === 0 ? 'block-even' : 'block-odd'}">
         <td class="attr-name" colspan="2">
           <span class="attr-chip">${escapeHtml(rotulo)}</span>
@@ -635,20 +1052,17 @@ $marcas = listarMarcas($pdo);
       </tr>
     `);
 
-    // linha de valores
-    $tbody.append(`
+        // linha de valores
+        $tbody.append(`
       <tr class="values-row ${idx % 2 === 0 ? 'block-even' : 'block-odd'}">
         <td>${escapeHtml(va)}</td>
         <td>${escapeHtml(vb)}</td>
       </tr>
     `);
-  });
+      });
 
-  // também atualiza o accordion mobile (se estiver usando)
-  renderAccordionComparativo(a, b);
-
-  $('#boxComparar').removeClass('d-none');
-}
+      $('#boxComparar').removeClass('d-none');
+    }
 
 
 
@@ -668,12 +1082,6 @@ $marcas = listarMarcas($pdo);
       });
     }
 
-    // habilita/desabilita o botão Comparar
-    function toggleBtnComparar() {
-      const ok = $('#selMarca-01').val() && $('#selModelo-01').val() && $('#selMarca-02').val() && $('#selModelo-02').val();
-      $('#btnComparar').prop('disabled', !ok);
-    }
-
     $(function() {
       // --- seus handlers para carregar os modelos (mantive sua lógica) ---
       $('#selMarca-01').on('change', function() {
@@ -681,7 +1089,6 @@ $marcas = listarMarcas($pdo);
         const $modelo = $('#selModelo-01').prop('disabled', true);
         if (!marca) {
           $modelo.html('<option value="">Selecione a marca primeiro</option>');
-          toggleBtnComparar();
           return;
         }
         $modelo.html('<option>Carregando...</option>');
@@ -696,7 +1103,6 @@ $marcas = listarMarcas($pdo);
           .done(function(data) {
             if (!Array.isArray(data) || data.length === 0) {
               $modelo.html('<option value="">Sem modelos para esta marca</option>');
-              toggleBtnComparar();
               return;
             }
             const opts = ['<option value="">Selecione...</option>'].concat(data.map(r => {
@@ -709,7 +1115,6 @@ $marcas = listarMarcas($pdo);
             console.error('Erro lista_modelos 01:', xhr?.status, xhr?.responseText);
             $modelo.html('<option value="">Erro ao carregar modelos</option>');
           })
-          .always(toggleBtnComparar);
       });
 
       $('#selMarca-02').on('change', function() {
@@ -717,7 +1122,6 @@ $marcas = listarMarcas($pdo);
         const $modelo = $('#selModelo-02').prop('disabled', true);
         if (!marca) {
           $modelo.html('<option value="">Selecione a marca primeiro</option>');
-          toggleBtnComparar();
           return;
         }
         $modelo.html('<option>Carregando...</option>');
@@ -732,7 +1136,6 @@ $marcas = listarMarcas($pdo);
           .done(function(data) {
             if (!Array.isArray(data) || data.length === 0) {
               $modelo.html('<option value="">Sem modelos para esta marca</option>');
-              toggleBtnComparar();
               return;
             }
             const opts = ['<option value="">Selecione...</option>'].concat(data.map(r => {
@@ -745,44 +1148,110 @@ $marcas = listarMarcas($pdo);
             console.error('Erro lista_modelos 02:', xhr?.status, xhr?.responseText);
             $modelo.html('<option value="">Erro ao carregar modelos</option>');
           })
-          .always(toggleBtnComparar);
       });
 
-      // monitora selects para habilitar o botão
-      $('#selModelo-01, #selModelo-02').on('change', toggleBtnComparar);
 
       // --- botão Comparar ---
       $('#btnComparar').on('click', function() {
-        const marca1 = $('#selMarca-01').val();
-        const modelo1 = $('#selModelo-01').val();
-        const marca2 = $('#selMarca-02').val();
-        const modelo2 = $('#selModelo-02').val();
+  const marca1  = $('#selMarca-01').val();
+const modelo1 = $('#selModelo-01').val();
+const marca2  = $('#selMarca-02').val();
+const modelo2 = $('#selModelo-02').val();
 
-        if (!marca1 || !modelo1 || !marca2 || !modelo2) return;
+const isEmpty = v => v == null || String(v).trim() === '';
 
-        // loading
-        $('#boxComparar').removeClass('d-none');
-        $('#tComparar tbody').html('<tr><td colspan="3">Comparando modelos...</td></tr>');
+const faltando = [];
+let focusSel = null;
 
-        $.when(
-          buscaDadosModelo(marca1, modelo1),
-          buscaDadosModelo(marca2, modelo2)
-        ).done(function(a, b) {
-          // $.when resolve com [dados] quando a função retorna Promise normal
-          const dados1 = a;
-          const dados2 = b;
-          if (!dados1 || !dados2) {
-            $('#tComparar tbody').html('<tr><td colspan="3">Não foi possível obter os dados de um dos modelos.</td></tr>');
-            return;
-          }
-          renderTabelaComparativo(dados1, dados2);
-        }).fail(function(xhr) {
-          console.error('Falha no comparativo:', xhr?.status, xhr?.responseText);
-          $('#tComparar tbody').html('<tr><td colspan="3">Erro ao buscar dados para comparação.</td></tr>');
-        });
-      });
+// Moto 1
+if (isEmpty(marca1)) {
+  faltando.push('Marca da Moto 1');
+  focusSel ??= '#selMarca-01';
+}
+if (isEmpty(modelo1)) {
+  faltando.push('Modelo da Moto 1');
+  // Só foca no modelo se a marca 1 já estiver ok; senão mantenha foco na marca
+  if (!focusSel && !isEmpty(marca1)) focusSel = '#selModelo-01';
+}
+
+// Moto 2
+if (isEmpty(marca2)) {
+  faltando.push('Marca da Moto 2');
+  focusSel ??= '#selMarca-02';
+}
+if (isEmpty(modelo2)) {
+  faltando.push('Modelo da Moto 2');
+  if (!focusSel && !isEmpty(marca2)) focusSel = '#selModelo-02';
+}
+
+if (faltando.length) {
+  abrirModalPreenchimento(faltando, focusSel); // usa sua função de modal
+  return;
+}
+
+
+  // loading
+  showLoader();
+
+  $.when(
+    buscaDadosModelo(marca1, modelo1),
+    buscaDadosModelo(marca2, modelo2)
+  ).done(function(a, b) {
+    const dados1 = a, dados2 = b;
+    hideLoader();
+    if (!dados1 || !dados2) {
+      $('#tComparar thead').html('<tr><th>Modelo A</th><th>Modelo B</th></tr>');
+      $('#tComparar tbody').html('<tr><td colspan="2">Não foi possível obter os dados de um dos modelos.</td></tr>');
+      return;
+    }
+    renderTabelaComparativo(dados1, dados2);
+  }).fail(function(xhr) {
+    console.error('Falha no comparativo:', xhr?.status, xhr?.responseText);
+    hideLoader();
+    $('#tComparar thead').html('<tr><th>Modelo A</th><th>Modelo B</th></tr>');
+    $('#tComparar tbody').html('<tr><td colspan="2">Erro ao buscar dados para comparação.</td></tr>');
+  });
+});
+
     });
+
+    function abrirModalPreenchimento(faltando, focusSelector){
+  const $list = $('#modalPreenchimentoLista').empty();
+  faltando.forEach(msg => $list.append(`<li>${escapeHtml(msg)}</li>`));
+
+  const modalEl = document.getElementById('modalPreenchimento');
+  const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+
+  // ao fechar, foca no primeiro campo faltante
+  if (focusSelector) {
+    modalEl.addEventListener('hidden.bs.modal', function onHidden(){
+      $(focusSelector).trigger('focus');
+      modalEl.removeEventListener('hidden.bs.modal', onHidden);
+    }, { once: true });
+  }
+  modal.show();
+}
+
   </script>
+
+  <!-- Modal: Campos obrigatórios -->
+<div class="modal fade" id="modalPreenchimento" tabindex="-1" aria-labelledby="modalPreenchimentoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="modalPreenchimentoLabel">Atenção</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <p>Para comparar as motos, preencha os seguintes campos:</p>
+        <ul id="modalPreenchimentoLista" class="mb-0"></ul>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK, vou preencher</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 
