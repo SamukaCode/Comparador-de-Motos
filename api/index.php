@@ -373,10 +373,12 @@ $marcas = listarMarcas($pdo);
       $('#btnComparar').prop('disabled', true);
       $('#tComparar thead, #tComparar tbody').empty();
       $('#accComparar').empty();
+      $('#comparar-disclaimer').addClass('d-none');
     }
 
     function hideLoader() {
       $('#loaderComparar').removeClass('show');
+      $('#comparar-disclaimer').removeClass('d-none');
       $('#btnComparar').prop('disabled', false);
     }
 

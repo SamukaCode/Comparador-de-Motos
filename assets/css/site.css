@@ -266,8 +266,17 @@ body {
 
 /* Wrapper da tabela (arredondado) */
 .table-compare-wrap{
+  display: block; 
   border-radius: 12px;
   overflow: visible; /* comentário do autor */
+}
+
+/* centraliza e faz o disclaimer seguir a largura da tabela */
+#comparar-disclaimer{
+  width: clamp(320px, 90vw, 960px); 
+  margin: .75rem auto 0; 
+  text-align: center;
+  color: rgba(0,0,0,.65);
 }
 
 /* Tabela base */
