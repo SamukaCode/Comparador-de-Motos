@@ -735,7 +735,7 @@ $marcas = listarMarcas($pdo);
 <body>
   <header class="site-header">
     <div class="site-brand">
-      <img src="assets/logo.png" alt="Duas Rodas — Comparador de Motos">
+      <img src="/assets/logo.png" alt="Duas Rodas — Comparador de Motos">
       <div class="brand-wrap">
         <h1 class="brand-title">Duas Rodas</h1>
         <p class="brand-sub">Comparador de motos</p>
@@ -788,7 +788,7 @@ $marcas = listarMarcas($pdo);
             <!-- COLUNA 1 -->
             <div class="compare-col">
               <div class="compare-head">
-                <img class="moto-icon" src="assets/icons/moto.svg" alt="">
+                <img class="moto-icon" src="/assets/icons/moto.svg" alt="">
                 <span>Moto 1</span>
               </div>
 
@@ -819,7 +819,7 @@ $marcas = listarMarcas($pdo);
             <!-- COLUNA 2 -->
             <div class="compare-col">
               <div class="compare-head">
-                <img class="moto-icon" src="assets/icons/moto.svg" alt="">
+                <img class="moto-icon" src="/assets/icons/moto.svg" alt="">
                 <span>Moto 2</span>
               </div>
 
@@ -864,7 +864,7 @@ $marcas = listarMarcas($pdo);
           <div id="loaderComparar" class="moto-loader" aria-live="polite" aria-busy="true">
             <div class="moto-anim" aria-hidden="true">
               <!-- usa seu SVG da pasta -->
-              <img src="assets/icons/moto.svg" alt="" class="moto-silhouette">
+              <img src="/assets/icons/moto.svg" alt="" class="moto-silhouette">
               <span class="puff"></span><span class="puff d1"></span><span class="puff d2"></span>
             </div>
             <div class="loader-text">Acelerando os dados…</div>
