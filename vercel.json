@@ -5,8 +5,7 @@
       "includeFiles": "sis/**"
     }
   },
-  "routes": [
-    { "src": "/assets/(.*)", "dest": "/assets/$1" },
-    { "src": "/(.*)", "dest": "/api/index.php" }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/index.php" }
   ]
 }
