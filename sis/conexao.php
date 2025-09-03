@@ -1,9 +1,11 @@
 <?php
 // conexao.php
-$host = 'ep-wispy-darkness-a55dfxbd-pooler.us-east-2.aws.neon.tech';
-$db   = 'neondb';
-$user = 'neondb_owner';
-$pass = 'npg_PxC3ots8mLBj';
+$cfg = require __DIR__ . '/secrets.php';
+
+$host     = $cfg['DB_HOST'];
+$db       = $cfg['DB_NAME'];
+$user     = $cfg['DB_USER'];
+$pass     = $cfg['DB_PASS'];
 
 try {
     $dsn = "pgsql:host=$host;port=5432;dbname=$db;sslmode=require;options=endpoint=ep-wispy-darkness-a55dfxbd";
