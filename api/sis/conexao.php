@@ -15,8 +15,7 @@ $pass = $cfg['DB_PASS'];
 $endp = $cfg['DB_ENDPOINT'];
 
 try {
-    $$dsn = "pgsql:host={$host};port=5432;dbname={$db};sslmode=require"
-       . ($endp ? ";options=endpoint={$endp}" : "");
+    $dsn = "pgsql:host=$host;port=5432;dbname=$db;sslmode=require;options=project=$endp";
     $pdo = new PDO($dsn, $user, $pass, [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
