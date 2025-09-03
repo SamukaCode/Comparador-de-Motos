@@ -702,5 +702,6 @@
 
     .compare-head {
     justify-content: center;
+    margin-bottom: 0;
 }
 }
