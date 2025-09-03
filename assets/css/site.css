@@ -96,6 +96,16 @@ body {
   box-shadow: 0 8px 22px rgba(0, 0, 0, .06);
 }
 
+/* Mantém a mesma altura no enabled/disabled (evita “pulo”) */
+.form-select { min-height: 48px; }
+
+/* Em alguns mobiles, disabled muda aparência/altura: neutralize */
+.form-select:disabled {
+  opacity: 1;                 /* Bootstrp reduz; mantenha igual */
+  background-color: #fff;     /* evita cinza que às vezes muda o box */
+}
+
+
 /* Divisor vertical/horizontal entre as seleções */
 .compare-divider {
   width: 4px;
