@@ -19,7 +19,7 @@ $marcas = listarMarcas($pdo);
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
     crossorigin="anonymous">
 
-    <link rel="stylesheet" href="assets/css/site.css?v=<?= filemtime(__DIR__.'/assets/css/site.css') ?>">
+    <link rel="stylesheet" href="/assets/css/site.css">
 <style>
       :root {
       --brand-red: #E53935;
