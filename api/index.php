@@ -1073,7 +1073,7 @@ const vb = formatarComUnidade(key, b?.[key]);
     // busca os dados de um modelo (retorna Promise que resolve no objeto do modelo)
     function buscaDadosModelo(marca, modelo) {
       return $.ajax({
-        url: 'sis/lista_dados_modelo.php',
+        url: '/api/sis/lista_dados_modelo.php',
         method: 'POST',
         dataType: 'json',
         data: {
@@ -1096,7 +1096,7 @@ const vb = formatarComUnidade(key, b?.[key]);
         }
         $modelo.html('<option>Carregando...</option>');
         $.ajax({
-            url: 'sis/lista_modelos.php',
+            url: '/api/sis/lista_modelos.php',
             method: 'POST',
             dataType: 'json',
             data: {
@@ -1129,7 +1129,7 @@ const vb = formatarComUnidade(key, b?.[key]);
         }
         $modelo.html('<option>Carregando...</option>');
         $.ajax({
-            url: 'sis/lista_modelos.php',
+            url: '/api/sis/lista_modelos.php',
             method: 'POST',
             dataType: 'json',
             data: {
