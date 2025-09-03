@@ -8,7 +8,7 @@ $user     = $cfg['DB_USER'];
 $pass     = $cfg['DB_PASS'];
 
 try {
-    $dsn = "pgsql:host=$host;port=5432;dbname=$db;sslmode=require;options=endpoint=ep-wispy-darkness-a55dfxbd";
+    $dsn = "pgsql:host=$host;port=5432;dbname=$db;sslmode=require;options=project=ep-wispy-darkness-a55dfxbd-pooler";
     $pdo = new PDO($dsn, $user, $pass, [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
