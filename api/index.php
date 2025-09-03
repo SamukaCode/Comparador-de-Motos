@@ -164,6 +164,10 @@ $marcas = listarMarcas($pdo);
               </thead>
               <tbody><!-- preenchido via JS --></tbody>
             </table>
+            <div class="small text-muted mt-2" id="comparar-disclaimer">
+              As informações deste comparador podem conter imprecisões. Levantamento de dados: 2025.
+            </div>
+
           </div>
         </div>
       </div>
