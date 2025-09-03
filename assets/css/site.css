@@ -357,25 +357,15 @@
       border-spacing: 0;
       border-radius: 12px;
       /* Cantos arredondados */
-      overflow: hidden;
+      overflow: visible;
       /* Garante que os cantos arredondados funcionem */
       box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
       /* Sombra suave */
-    }
-
-    /* Centralização horizontal + largura responsiva */
-    .table-compare.custom {
-      margin: 0 auto;
-      /* centraliza o <table> */
-      width: clamp(320px, 90vw, 960px);
-      /* fluido até 960px */
       table-layout: fixed;
-      /* colunas com mesma largura */
     }
 
     .container-conteudo { overflow: visible; }     /* estava auto */
 .table-compare-wrap { overflow: visible; }     /* se tiver max-height, remova */
-.table-compare.custom { overflow: visible; }
 
 
     /* Centraliza texto de cabeçalhos e células */
