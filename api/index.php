@@ -77,7 +77,7 @@ $marcas = listarMarcas($pdo);
                 <span>Moto 1</span>
               </div>
 
-              <div class="row g-3 align-items-end mb-3">
+              <div class="row g-3 align-items-md-end mb-3">
                 <div class="col-sm-6 col-md-8 col-lg-6">
                   <label for="selMarca-01" class="form-label">Marca</label>
                   <select id="selMarca-01" class="form-select">
@@ -108,7 +108,7 @@ $marcas = listarMarcas($pdo);
                 <span>Moto 2</span>
               </div>
 
-              <div class="row g-3 align-items-end mb-3">
+              <div class="row g-3 align-items-md-end mb-3">
                 <div class="col-sm-6 col-md-8 col-lg-6">
                   <label for="selMarca-02" class="form-label">Marca</label>
                   <select id="selMarca-02" class="form-select">
