@@ -11,34 +11,31 @@ $marcas = listarMarcas($pdo);
 
 <head>
   <meta charset="utf-8">
-  <title>Duas Rodas - Comparador de Motos</title>
+  <title>Comparador de Motos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="/assets/icons/moto-fav.ico">  
-  <!-- Bootstrap 5 CSS -->
+  <link rel="icon" href="/assets/icons/moto-fav.ico">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
     crossorigin="anonymous">
-
-    <link rel="stylesheet" href="/assets/css/site.css">
-
+  <link rel="stylesheet" href="/assets/css/site.css">
 </head>
 
 <body>
   <header class="site-header">
     <div class="site-brand">
+      <!-- Logo e Titulo no Header (esquerda) -->
       <img src="/assets/logo.png" alt="Duas Rodas — Comparador de Motos">
       <div class="brand-wrap">
         <h1 class="brand-title">Duas Rodas</h1>
         <p class="brand-sub">Comparador de motos</p>
       </div>
 
-      <!-- Ícones sociais (direita) -->
+      <!-- Ícones das redes sociais (direita) -->
       <div class="social-stack">
         <a class="social-link"
           href="https://www.linkedin.com/in/samuel--camargo"
           target="_blank" rel="noopener"
           aria-label="LinkedIn de Samuel Camargo">
-          <!-- LinkedIn -->
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="currentColor" role="img" aria-hidden="true">
             <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z
                    M11,14.47c0-1.4,1.2-2.47,3-2.47s3,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53S11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10
@@ -69,14 +66,11 @@ $marcas = listarMarcas($pdo);
 
   <!-- SUBSTITUA O HEADER + CONTAINERS INICIAIS POR ESTE BLOCO -->
   <section class="split-hero">
-
-
-    <!-- METADE 2: CONTEÚDO -->
     <div class="container-conteudo">
       <div class="container-fluid p-0">
         <div class="container-selecao">
           <div class="compare-wrap">
-            <!-- COLUNA 1 -->
+            <!-- 1º Coluna -->
             <div class="compare-col">
               <div class="compare-head">
                 <img class="moto-icon" src="/assets/icons/moto.svg" alt="">
@@ -107,7 +101,7 @@ $marcas = listarMarcas($pdo);
             <!-- DIVISOR VERMELHO -->
             <div class="compare-divider" aria-hidden="true"></div>
 
-            <!-- COLUNA 2 -->
+            <!-- 2º Coluna -->
             <div class="compare-col">
               <div class="compare-head">
                 <img class="moto-icon" src="/assets/icons/moto.svg" alt="">
@@ -134,9 +128,8 @@ $marcas = listarMarcas($pdo);
                 </div>
               </div>
             </div>
-
-
-          </div><!-- /compare-wrap -->
+          </div>
+          <!--Container do Botão -->
           <div class="container-button">
             <button class="btn-comparar" id="btnComparar">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -147,23 +140,22 @@ $marcas = listarMarcas($pdo);
               </div>
             </button>
           </div>
-        </div><!-- /container-selecao -->
+        </div>
 
-
-
+        <!--Container que trará os dados de cada moto -->
         <div id="boxComparar" class="mt-4 d-none">
+          <!--Loader com formato de moto -->
           <div id="loaderComparar" class="moto-loader" aria-live="polite" aria-busy="true">
             <div class="moto-anim" aria-hidden="true">
-              <!-- usa seu SVG da pasta -->
               <img src="/assets/icons/moto.svg" alt="" class="moto-silhouette">
               <span class="puff"></span><span class="puff d1"></span><span class="puff d2"></span>
             </div>
             <div class="loader-text">Acelerando os dados…</div>
           </div>
 
-          <!-- DESKTOP: Tabela -->
-<div class="table-compare-wrap">
-  <table id="tComparar" class="table table-compare align-middle">
+          <!-- Tabela preenchida com os dados de cada moto -->
+          <div class="table-compare-wrap">
+            <table id="tComparar" class="table table-compare align-middle">
               <thead>
                 <tr>
                   <th id="thModel1">Modelo A</th>
@@ -174,14 +166,11 @@ $marcas = listarMarcas($pdo);
             </table>
           </div>
         </div>
-
-
       </div>
     </div>
-
-
   </section>
 
+  <!--Rodapé -->
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       © <?= date('Y') ?> Duas Rodas — Comparador de Motos. Todos os direitos reservados.<br>
@@ -189,20 +178,149 @@ $marcas = listarMarcas($pdo);
     </div>
   </footer>
 
-
-
-  <!-- jQuery 3 -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
     crossorigin="anonymous"></script>
-
-  <!-- Bootstrap 5 JS (bundle inclui Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 
   <script>
-    // helpers
+    $(function() {
+      // Evento quando selecionada a marca (popula o select de modelo)
+      $('#selMarca-01').on('change', function() {
+        const marca = $('#selMarca-01').val();
+        const $modelo = $('#selModelo-01').prop('disabled', true);
+        if (!marca) {
+          $modelo.html('<option value="">Selecione a marca primeiro</option>');
+          return;
+        }
+        $modelo.html('<option>Carregando...</option>');
+        $.ajax({
+            url: '/api/sis/lista_modelos.php',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+              marca
+            }
+          })
+          .done(function(data) {
+            if (!Array.isArray(data) || data.length === 0) {
+              $modelo.html('<option value="">Sem modelos para esta marca</option>');
+              return;
+            }
+            const opts = ['<option value="">Selecione...</option>'].concat(data.map(r => {
+              const modelo = escapeHtml(r.modelo ?? '');
+              return `<option value="${modelo}">${modelo}</option>`;
+            }));
+            $modelo.html(opts.join('')).prop('disabled', false);
+          })
+          .fail(function(xhr) {
+            console.error('Erro lista_modelos 01:', xhr?.status, xhr?.responseText);
+            $modelo.html('<option value="">Erro ao carregar modelos</option>');
+          })
+      });
+
+      // Evento quando selecionada a marca (popula o select de modelo)
+      $('#selMarca-02').on('change', function() {
+        const marca = $('#selMarca-02').val();
+        const $modelo = $('#selModelo-02').prop('disabled', true);
+        if (!marca) {
+          $modelo.html('<option value="">Selecione a marca primeiro</option>');
+          return;
+        }
+        $modelo.html('<option>Carregando...</option>');
+        $.ajax({
+            url: '/api/sis/lista_modelos.php',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+              marca
+            }
+          })
+          .done(function(data) {
+            if (!Array.isArray(data) || data.length === 0) {
+              $modelo.html('<option value="">Sem modelos para esta marca</option>');
+              return;
+            }
+            const opts = ['<option value="">Selecione...</option>'].concat(data.map(r => {
+              const modelo = escapeHtml(r.modelo ?? '');
+              return `<option value="${modelo}">${modelo}</option>`;
+            }));
+            $modelo.html(opts.join('')).prop('disabled', false);
+          })
+          .fail(function(xhr) {
+            console.error('Erro lista_modelos 02:', xhr?.status, xhr?.responseText);
+            $modelo.html('<option value="">Erro ao carregar modelos</option>');
+          })
+      });
+
+
+      // Evento de click no botão "Comparar"
+      $('#btnComparar').on('click', function() {
+        const marca1 = $('#selMarca-01').val();
+        const modelo1 = $('#selModelo-01').val();
+        const marca2 = $('#selMarca-02').val();
+        const modelo2 = $('#selModelo-02').val();
+
+        const isEmpty = v => v == null || String(v).trim() === '';
+
+        const faltando = [];
+        let focusSel = null;
+
+        // Moto 1
+        if (isEmpty(marca1)) {
+          faltando.push('Marca da Moto 1');
+          focusSel ??= '#selMarca-01';
+        }
+        if (isEmpty(modelo1)) {
+          faltando.push('Modelo da Moto 1');
+          // Só foca no modelo se a marca 1 já estiver ok; senão mantenha foco na marca
+          if (!focusSel && !isEmpty(marca1)) focusSel = '#selModelo-01';
+        }
+
+        // Moto 2
+        if (isEmpty(marca2)) {
+          faltando.push('Marca da Moto 2');
+          focusSel ??= '#selMarca-02';
+        }
+        if (isEmpty(modelo2)) {
+          faltando.push('Modelo da Moto 2');
+          if (!focusSel && !isEmpty(marca2)) focusSel = '#selModelo-02';
+        }
+
+        if (faltando.length) {
+          abrirModalPreenchimento(faltando, focusSel); // usa sua função de modal
+          return;
+        }
+
+        // loading
+        showLoader();
+
+        $.when(
+          buscaDadosModelo(marca1, modelo1),
+          buscaDadosModelo(marca2, modelo2)
+        ).done(function(a, b) {
+          const dados1 = a,
+            dados2 = b;
+          hideLoader();
+          if (!dados1 || !dados2) {
+            $('#tComparar thead').html('<tr><th>Modelo A</th><th>Modelo B</th></tr>');
+            $('#tComparar tbody').html('<tr><td colspan="2">Não foi possível obter os dados de um dos modelos.</td></tr>');
+            return;
+          }
+          renderTabelaComparativo(dados1, dados2);
+        }).fail(function(xhr) {
+          console.error('Falha no comparativo:', xhr?.status, xhr?.responseText);
+          hideLoader();
+          $('#tComparar thead').html('<tr><th>Modelo A</th><th>Modelo B</th></tr>');
+          $('#tComparar tbody').html('<tr><td colspan="2">Erro ao buscar dados para comparação.</td></tr>');
+        });
+      });
+
+    });
+
+    //protege/limpa o texto
     function escapeHtml(s) {
       return String(s ?? '').replace(/[&<>"']/g, m => ({
         '&': '&amp;',
@@ -212,6 +330,8 @@ $marcas = listarMarcas($pdo);
         "'": '&#039;'
       } [m]));
     }
+
+    //padronizam a apresentação de números e preços.
     const fmtNum = new Intl.NumberFormat('pt-BR', {
       maximumFractionDigits: 2
     });
@@ -220,7 +340,7 @@ $marcas = listarMarcas($pdo);
       currency: 'BRL'
     });
 
-    // mesmo mapa de atributos que você usa em renderTabelaModelo
+    // colunas vindo do banco e formatação do texto
     const MAPA_ATRIBUTOS = [
       ['cilindrada', 'Cilindrada'],
       ['potencia', 'Potência'],
@@ -256,66 +376,28 @@ $marcas = listarMarcas($pdo);
       $('#btnComparar').prop('disabled', false);
     }
 
+    // unidades por atributo
+    const UNIDADES = {
+      consumo_medio: ' km/l',
+      tanque: ' L',
+      peso: ' kg',
+      altura_do_assento: ' mm',
+    };
 
-    // Seções para o accordion (agrupam atributos)
-    const SECOES = [{
-        titulo: 'Motor / Transmissão',
-        itens: [
-          ['cilindrada', 'Cilindrada'],
-          ['potencia', 'Potência'],
-          ['torque', 'Torque'],
-          ['transmissao', 'Transmissão']
-        ]
-      },
-      {
-        titulo: 'Suspensão & Freios',
-        itens: [
-          ['suspensao_dianteira', 'Suspensão dianteira'],
-          ['suspensao_traseira', 'Suspensão traseira'],
-          ['freios', 'Freios'],
-          ['pneus', 'Pneus']
-        ]
-      },
-      {
-        titulo: 'Dimensões',
-        itens: [
-          ['peso', 'Peso'],
-          ['altura_do_assento', 'Altura do assento'],
-          ['tanque', 'Tanque']
-        ]
-      },
-      {
-        titulo: 'Economia & Preço',
-        itens: [
-          ['consumo_medio', 'Consumo médio'],
-          ['preco', 'Preço']
-        ]
-      },
-    ];
+    // só adiciona unidade se o valor for “puro número” (evita duplicar)
+    function formatarComUnidade(chave, val) {
+      const base = formatar(chave, val);
+      if (base === '-') return base;
 
-    // unidades por atributo (ajuste como preferir)
-const UNIDADES = {
-  consumo_medio: ' km/l',
-  tanque:        ' L',
-  peso:          ' kg',
-  altura_do_assento: ' mm',
-};
+      const unidade = UNIDADES[chave];
+      if (!unidade) return base;
 
-// só adiciona unidade se o valor for “puro número” (evita duplicar)
-function formatarComUnidade(chave, val){
-  const base = formatar(chave, val);
-  if (base === '-') return base;
+      // se o valor original já tem letras/símbolos (ex.: "25 km/l"), não acrescenta
+      const temUnidadeNoOriginal = /[^0-9.,\-]/.test(String(val ?? '').trim());
+      return temUnidadeNoOriginal ? base : (base + unidade);
+    }
 
-  const unidade = UNIDADES[chave];
-  if (!unidade) return base;
-
-  // se o valor original já tem letras/símbolos (ex.: "25 km/l"), não acrescenta
-  const temUnidadeNoOriginal = /[^0-9.,\-]/.test(String(val ?? '').trim());
-  return temUnidadeNoOriginal ? base : (base + unidade);
-}
-
-
-
+    //Função que popula a tabela com os dados
     function renderTabelaComparativo(a, b) {
       const $table = $('#tComparar').addClass('custom');
       const $thead = $table.find('thead').empty();
@@ -334,7 +416,7 @@ function formatarComUnidade(chave, val){
       // Para cada atributo: 1) linha-título (colspan=2), 2) linha com valores (duas colunas)
       MAPA_ATRIBUTOS.forEach(([key, rotulo], idx) => {
         const va = formatarComUnidade(key, a?.[key]);
-const vb = formatarComUnidade(key, b?.[key]);
+        const vb = formatarComUnidade(key, b?.[key]);
 
 
         // linha do título do atributo (ocupa as duas colunas)
@@ -358,10 +440,7 @@ const vb = formatarComUnidade(key, b?.[key]);
       $('#boxComparar').removeClass('d-none');
     }
 
-
-
-
-    // busca os dados de um modelo (retorna Promise que resolve no objeto do modelo)
+    // busca os dados de um modelo no banco de dados (retorna Promise que resolve no objeto do modelo)
     function buscaDadosModelo(marca, modelo) {
       return $.ajax({
         url: '/api/sis/lista_dados_modelo.php',
@@ -376,177 +455,45 @@ const vb = formatarComUnidade(key, b?.[key]);
       });
     }
 
-    $(function() {
-      // --- seus handlers para carregar os modelos (mantive sua lógica) ---
-      $('#selMarca-01').on('change', function() {
-        const marca = $('#selMarca-01').val();
-        const $modelo = $('#selModelo-01').prop('disabled', true);
-        if (!marca) {
-          $modelo.html('<option value="">Selecione a marca primeiro</option>');
-          return;
-        }
-        $modelo.html('<option>Carregando...</option>');
-        $.ajax({
-            url: '/api/sis/lista_modelos.php',
-            method: 'POST',
-            dataType: 'json',
-            data: {
-              marca
-            }
-          })
-          .done(function(data) {
-            if (!Array.isArray(data) || data.length === 0) {
-              $modelo.html('<option value="">Sem modelos para esta marca</option>');
-              return;
-            }
-            const opts = ['<option value="">Selecione...</option>'].concat(data.map(r => {
-              const modelo = escapeHtml(r.modelo ?? '');
-              return `<option value="${modelo}">${modelo}</option>`;
-            }));
-            $modelo.html(opts.join('')).prop('disabled', false);
-          })
-          .fail(function(xhr) {
-            console.error('Erro lista_modelos 01:', xhr?.status, xhr?.responseText);
-            $modelo.html('<option value="">Erro ao carregar modelos</option>');
-          })
-      });
+    //Função que abre o modal e o popula com as informações faltantes
+    function abrirModalPreenchimento(faltando, focusSelector) {
+      const $list = $('#modalPreenchimentoLista').empty();
+      faltando.forEach(msg => $list.append(`<li>${escapeHtml(msg)}</li>`));
 
-      $('#selMarca-02').on('change', function() {
-        const marca = $('#selMarca-02').val();
-        const $modelo = $('#selModelo-02').prop('disabled', true);
-        if (!marca) {
-          $modelo.html('<option value="">Selecione a marca primeiro</option>');
-          return;
-        }
-        $modelo.html('<option>Carregando...</option>');
-        $.ajax({
-            url: '/api/sis/lista_modelos.php',
-            method: 'POST',
-            dataType: 'json',
-            data: {
-              marca
-            }
-          })
-          .done(function(data) {
-            if (!Array.isArray(data) || data.length === 0) {
-              $modelo.html('<option value="">Sem modelos para esta marca</option>');
-              return;
-            }
-            const opts = ['<option value="">Selecione...</option>'].concat(data.map(r => {
-              const modelo = escapeHtml(r.modelo ?? '');
-              return `<option value="${modelo}">${modelo}</option>`;
-            }));
-            $modelo.html(opts.join('')).prop('disabled', false);
-          })
-          .fail(function(xhr) {
-            console.error('Erro lista_modelos 02:', xhr?.status, xhr?.responseText);
-            $modelo.html('<option value="">Erro ao carregar modelos</option>');
-          })
-      });
+      const modalEl = document.getElementById('modalPreenchimento');
+      const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
 
-
-      // --- botão Comparar ---
-      $('#btnComparar').on('click', function() {
-  const marca1  = $('#selMarca-01').val();
-const modelo1 = $('#selModelo-01').val();
-const marca2  = $('#selMarca-02').val();
-const modelo2 = $('#selModelo-02').val();
-
-const isEmpty = v => v == null || String(v).trim() === '';
-
-const faltando = [];
-let focusSel = null;
-
-// Moto 1
-if (isEmpty(marca1)) {
-  faltando.push('Marca da Moto 1');
-  focusSel ??= '#selMarca-01';
-}
-if (isEmpty(modelo1)) {
-  faltando.push('Modelo da Moto 1');
-  // Só foca no modelo se a marca 1 já estiver ok; senão mantenha foco na marca
-  if (!focusSel && !isEmpty(marca1)) focusSel = '#selModelo-01';
-}
-
-// Moto 2
-if (isEmpty(marca2)) {
-  faltando.push('Marca da Moto 2');
-  focusSel ??= '#selMarca-02';
-}
-if (isEmpty(modelo2)) {
-  faltando.push('Modelo da Moto 2');
-  if (!focusSel && !isEmpty(marca2)) focusSel = '#selModelo-02';
-}
-
-if (faltando.length) {
-  abrirModalPreenchimento(faltando, focusSel); // usa sua função de modal
-  return;
-}
-
-
-  // loading
-  showLoader();
-
-  $.when(
-    buscaDadosModelo(marca1, modelo1),
-    buscaDadosModelo(marca2, modelo2)
-  ).done(function(a, b) {
-    const dados1 = a, dados2 = b;
-    hideLoader();
-    if (!dados1 || !dados2) {
-      $('#tComparar thead').html('<tr><th>Modelo A</th><th>Modelo B</th></tr>');
-      $('#tComparar tbody').html('<tr><td colspan="2">Não foi possível obter os dados de um dos modelos.</td></tr>');
-      return;
+      // ao fechar, foca no primeiro campo faltante
+      if (focusSelector) {
+        modalEl.addEventListener('hidden.bs.modal', function onHidden() {
+          $(focusSelector).trigger('focus');
+          modalEl.removeEventListener('hidden.bs.modal', onHidden);
+        }, {
+          once: true
+        });
+      }
+      modal.show();
     }
-    renderTabelaComparativo(dados1, dados2);
-  }).fail(function(xhr) {
-    console.error('Falha no comparativo:', xhr?.status, xhr?.responseText);
-    hideLoader();
-    $('#tComparar thead').html('<tr><th>Modelo A</th><th>Modelo B</th></tr>');
-    $('#tComparar tbody').html('<tr><td colspan="2">Erro ao buscar dados para comparação.</td></tr>');
-  });
-});
-
-    });
-
-    function abrirModalPreenchimento(faltando, focusSelector){
-  const $list = $('#modalPreenchimentoLista').empty();
-  faltando.forEach(msg => $list.append(`<li>${escapeHtml(msg)}</li>`));
-
-  const modalEl = document.getElementById('modalPreenchimento');
-  const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-
-  // ao fechar, foca no primeiro campo faltante
-  if (focusSelector) {
-    modalEl.addEventListener('hidden.bs.modal', function onHidden(){
-      $(focusSelector).trigger('focus');
-      modalEl.removeEventListener('hidden.bs.modal', onHidden);
-    }, { once: true });
-  }
-  modal.show();
-}
-
   </script>
 
   <!-- Modal: Campos obrigatórios -->
-<div class="modal fade" id="modalPreenchimento" tabindex="-1" aria-labelledby="modalPreenchimentoLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header border-0">
-        <h5 class="modal-title" id="modalPreenchimentoLabel">Atenção</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-      </div>
-      <div class="modal-body">
-        <p>Para comparar as motos, preencha os seguintes campos:</p>
-        <ul id="modalPreenchimentoLista" class="mb-0"></ul>
-      </div>
-      <div class="modal-footer border-0">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK, vou preencher</button>
+  <div class="modal fade" id="modalPreenchimento" tabindex="-1" aria-labelledby="modalPreenchimentoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="modalPreenchimentoLabel">Atenção</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p>Para comparar as motos, preencha os seguintes campos:</p>
+          <ul id="modalPreenchimentoLista" class="mb-0"></ul>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK, vou preencher</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 </body>
 
 </html>

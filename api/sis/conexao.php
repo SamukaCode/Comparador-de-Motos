@@ -4,7 +4,7 @@ $host    = getenv('DB_HOST') ?: '';
 $db      = getenv('DB_NAME') ?: '';
 $user    = getenv('DB_USER') ?: '';
 $pass    = getenv('DB_PASS') ?: '';
-$project = getenv('DB_PROJECT') ?: ''; // opcional (Neon)
+$project = getenv('DB_PROJECT') ?: '';
 
 if (!$host || !$db || !$user || !$pass) {
   http_response_code(500);
@@ -12,7 +12,7 @@ if (!$host || !$db || !$user || !$pass) {
 }
 
 $dsn = "pgsql:host={$host};port=5432;dbname={$db};sslmode=require";
-// Se quiser usar o parâmetro do Neon, deixe só se corresponder ao SNI:
+
 if ($project) {
   $dsn .= ";options=project={$project}";
 }
