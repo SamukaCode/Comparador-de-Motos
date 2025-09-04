@@ -63,8 +63,6 @@ $marcas = listarMarcas($pdo);
     </div>
   </header>
 
-
-  <!-- SUBSTITUA O HEADER + CONTAINERS INICIAIS POR ESTE BLOCO -->
   <section class="split-hero">
     <div class="container-conteudo">
       <div class="container-fluid p-0">
